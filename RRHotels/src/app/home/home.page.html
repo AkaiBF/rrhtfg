@@ -1,0 +1,162 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button *ngIf="loggedinside"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Inicio
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngIf="loggedinside && !registering">
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-tabs>
+            <ion-tab label="Sin respuesta" icon="">
+                <ion-card *ngIf="allReservations.length == 0">
+                    <ion-card-content>
+                        Ups, todav&iacute;a no hay b&uacute;squedas sin respuesta. Comprueba la pesta&ntilde;a de en decisi&oacute;n o crea una nueva.
+                    </ion-card-content>
+                </ion-card>
+                <ion-list *ngIf="allReservations.length != 0">
+                    <ion-item *ngFor="let i of allReservations">
+                        <ion-avatar slot="start">
+                            <img src="https://images.trvl-media.com/hotels/21000000/20580000/20573700/20573686/7c29f05a_z.jpg" />
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{ i.name }}</h2>
+                            <h3>{{ i.startDate }} - {{ i.endDate }}</h3>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+
+            </ion-tab>
+            <ion-tab label="En decisi&oacute;n" icon="">
+                <ion-card *ngIf="pujas.length == 0">
+                    <ion-card-content>
+                        Ups, todav&iacute;a no hay respuestas a tus b&uacute;squedas o no has creado una.
+                    </ion-card-content>
+                </ion-card>
+                <ion-list *ngIf="pujas.length != 0">
+                    <ion-item *ngFor="let i of pujas" (click)="betsof(i)">
+                        <ion-avatar slot="start">
+                            <img [src]="i.img" />
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>
+                                {{ i.name }}
+                            </h2>
+                            <h3>
+                                {{ i.startDate }} - {{ i.endDate }}
+                            </h3>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+
+            </ion-tab>
+            <ion-tab label="Reservados" icon="">
+
+                <ion-list>
+                    <ion-item *ngFor="let i of closedbets">
+                        <ion-avatar slot="start">
+                            <img [src]="i.img" />
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{ i.name }}</h2>
+                            <h3>{{ i.startDate }} - {{ i.endDate }}</h3>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+
+            </ion-tab>
+            <ion-tab label="Finalizados" icon="">
+
+                <ion-list>
+                    <ion-item *ngFor="let i of pasados">
+                        <ion-avatar slot="start">
+                            <img [src]="i.img" />
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{ i.name }}</h2>
+                            <h3>{{ i.startDate }} - {{ i.endDate }}</h3>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+
+            </ion-tab>
+        </ion-tabs>
+
+    </div>
+
+
+    <div *ngIf="registering">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    Sign-up
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input type="email" [(ngModel)]="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input type="password" [(ngModel)]="password"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Nombre</ion-label>
+                        <ion-input type="text" [(ngModel)]="name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Apellidos</ion-label>
+                        <ion-input type="text" [(ngModel)]="surname"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Fecha de nacimiento</ion-label>
+                        <ion-input type="date" [(ngModel)]="birthday"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Teléfono</ion-label>
+                        <ion-input type="number" [(ngModel)]="number"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Nacionalidad</ion-label>
+                        <ion-input type="string" [(ngModel)]="nationality"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-button size="block" color="dark" (click)="register()">Registrarse</ion-button>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+    <div *ngIf="!loggedinside && !registering">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    Login
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input type="email" [(ngModel)]="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input type="password" [(ngModel)]="password"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-button size="block" color="dark" (click)="login()">Entrar</ion-button>
+            </ion-card-content>
+        </ion-card>
+        <div class="inline">&iquest;No tienes cuenta? Reg&iacute;strate&nbsp;</div> <div class="clickable inline" (click)="registering = true">aqu&iacute;</div>
+    </div>
+</ion-content>

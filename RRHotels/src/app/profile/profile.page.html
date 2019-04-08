@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Perfil
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card *ngIf="!editing">
+        <ion-img [src]="perfil.photo"></ion-img>
+        <ion-card-header>
+            <ion-card-title>{{ perfil.name }} {{ perfil.surname }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ul>
+                <li><b>Edad: {{ getAge(perfil.birthday) }}</b></li>
+                <li><b>Email: {{ perfil.email }}</b></li>
+                <li><b>Tel&eacute;fono: {{ perfil.phone }}</b></li>
+                <li><b>Nacionalidad: {{ perfil.nationality }}</b></li>
+            </ul>
+            <ion-button color="dark" (click)="editing = !editing">Editar</ion-button>
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="editing">
+        <input type="file" (change)="loadFile($event)" id="fichUp">
+        <ion-img id="imgpreview" [src]="perfil.photo"></ion-img>
+        
+        <ion-card-header>
+            <ion-card-title>
+                <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input type="text" [(ngModel)]="perfil.name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Surname</ion-label>
+                    <ion-input type="text" [(ngModel)]="perfil.surname"></ion-input>
+                </ion-item>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            
+            <ion-item>
+                <ion-label position="floating">Phone Number</ion-label>
+                <ion-input type="number" [(ngModel)]="perfil.phone"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nationality</ion-label>
+                <ion-input type="text" [(ngModel)]="perfil.nationality"></ion-input>
+            </ion-item>
+            <ion-button color="dark" (click)="update()">Guardar</ion-button>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

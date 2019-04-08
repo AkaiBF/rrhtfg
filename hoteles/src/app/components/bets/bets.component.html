@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Puntuación</th>
+      <th scope="col">Fechas</th>
+      <th scope="col">Puja</th>
+      <th scope="col">Mejor puja</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lead of leads; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ lead.name }}</td>
+      <td>
+      	<div class="container no-font-size">
+					<div class="d-inline" *ngFor="let i of counter(lead.stars)">
+						<i class="fa fa-star active-fa" aria-hidden="true"></i>
+					</div>
+					<div class="d-inline" *ngFor="let i of counter(5 - lead.stars)">
+						<i class="fa fa-star inactive-fa" aria-hidden="true"></i>
+					</div>
+				</div>
+			</td>
+      <td>{{ lead.date }}</td>
+      <td>{{ lead.thisPrice }}€</td>
+      <td>{{ lead.bestPrice }}€</td>
+      <td><div class="settings" (click)="select(lead.id, lead.thisPrice)" data-toggle="modal" data-target="#editModal"><i class="fas fa-wrench"></i></div></td>
+      <td><div class="settings" (click)="remove(lead.id)"><i class="fas fa-trash-alt"></i></div></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header navbar navbar-expand-lg navbar-dark bg-secondary">
+        <h5 class="modal-title white" id="editModalLabel">Editar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="newBet">Puja</label>
+        <input type="number" class="form-control" id="newBet" [(ngModel)]="newPrice">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="edit(selectedId, newPrice)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

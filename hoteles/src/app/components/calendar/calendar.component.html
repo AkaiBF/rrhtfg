@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<nav class="calendar-month">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" (click)="prevmonth()"><i class="fas fa-angle-left"></i></a></li>
+    <li class="page-item"><a class="page-link">{{ getMonth(today.getMonth()) }} {{ today.getFullYear() }}</a></li>
+    <li class="page-item"><a class="page-link" (click)="nextmonth()"><i class="fas fa-angle-right"></i></a></li>
+  </ul>
+</nav>
+<div>
+	<ul class="grid-calendar">
+		<div class="notmonth" *ngFor="let item of huecos(today.getMonth(), today.getFullYear())">
+			<li class="calendar notfull" *ngIf="!full(item, today.getMonth(), today.getFullYear())">{{ item }}</li>
+			<li class="calendar full" *ngIf="full(item, today.getMonth(), today.getFullYear())" >{{ item }}</li>
+		</div>
+		<div *ngFor="let item of monthdays(today.getMonth(), today.getFullYear())">
+			<li class="calendar notfull" *ngIf="!full(item, today.getMonth(), today.getFullYear())">{{ item }}</li>
+			<li class="calendar full" *ngIf="full(item, today.getMonth(), today.getFullYear())">{{ item }}</li>
+		</div>
+		<div class="notmonth" *ngFor="let item of huecosfin(today.getMonth(), today.getFullYear())">
+			<li class="calendar notfull" *ngIf="!full(item, today.getMonth(), today.getFullYear())">{{ item }}</li>
+			<li class="calendar full" *ngIf="full(item, today.getMonth(), today.getFullYear())">{{ item }}</li>
+		</div>
+		
+	</ul>
+</div>

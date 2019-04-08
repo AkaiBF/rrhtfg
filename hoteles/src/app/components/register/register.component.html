@@ -1,0 +1,266 @@
+<app-navbar></app-navbar>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<form>
+      	<div class="form-row">
+        	<div class="form-group col-md-6">
+          	<label for="inputEmail4">Email</label>
+          	<input type="email" [(ngModel)]="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+        	</div>
+        	<div class="form-group col-md-6">
+          	<label for="inputPassword4">Contraseña</label>
+          	<input type="password" [(ngModel)]="password" name="password" class="form-control" id="inputPassword4" placeholder="Contraseña">
+        	</div>
+      	</div>
+      	<div class="form-group">
+        	<label for="inputName">Nombre del hotel</label>
+        	<input type="text" [(ngModel)]="name" name="name" class="form-control" id="inputName" placeholder="Nombre del hotel">
+      	</div>
+      	<div class="form-group">
+       		<label for="inputAddress">Dirección</label>
+        	<input type="text" class="form-control" id="inputAddress" name="address" [(ngModel)]="address" placeholder="Dirección">
+      	</div>
+      	<div class="form-row">
+        	<div class="form-group col-md-4">
+          	<label for="inputState">País</label>
+          	<select id="inputState" name="country" [(ngModel)]="country" class="form-control">
+            	<option selected disabled>Seleccione...</option>
+            	<option>...</option>
+          	</select>
+        	</div>
+        	<div class="form-group col-md-4">
+          	<label for="inputComunity">Comunidad</label>
+          	<select id="inputComunity" name="community" [(ngModel)]="community" class="form-control">
+            	<option selected>Seleccione...</option>
+            	<option>...</option>
+          	</select>
+        	</div>
+        	<div class="form-group col-md-6">
+          	<label for="inputCity">Ciudad</label>
+          	<input type="text" class="form-control" name="city" [(ngModel)]="city" id="inputCity">
+        	</div>
+        	<div class="form-group col-md-2">
+          	<label for="inputZip">C.P.</label>
+          	<input type="text" [ngModel]="cp" name="cp" name="cp" [(ngModel)]="cp" class="form-control" id="inputZip">
+        	</div>
+        	<div class="form-group col-md-12">
+          	<div class="d-inline" *ngFor="let i of counter(stars); let j = index">
+            	<div class="d-inline" (click)="setRealStars(j + 1)" on-mouseout="setStars(realStars)" on-mouseover="setStars(j + 1)">
+              	<i class="fa fa-star active-fa" aria-hidden="true" ></i>
+            	</div>
+          	</div>
+          	<div class="d-inline" *ngFor="let i of counter(5 - stars); let j = index">
+            	<div class="d-inline" (click)="setRealStars(j + stars + 1)" on-mouseout="setStars(realStars)" on-mouseover="setStars(j + stars + 1)">
+              	<i class="fa fa-star inactive-fa" aria-hidden="true" ></i>
+            	</div>
+          	</div>
+        	</div>
+      	</div>
+      	<div class="form-group">
+        	<div class="form-check">
+          	<input class="form-check-input" type="checkbox" id="gridCheck">
+          	<label class="form-check-label" for="gridCheck">
+            	Acepto los <a href="">Términos y condiciones de uso</a>.
+          	</label>
+        	</div>
+      	</div>
+      	<button type="submit" class="btn btn-primary" (click)="register()">Sign up</button>
+    	</form>
+		</div>
+
+  	<div id="form-div" class="col-md-6">
+    	<br>
+    	<h4 id="form-heading">Características del hotel</h4>
+    	<hr>
+    	<form action="">
+      	<div class="form-check">
+        <input class="form-check-input" name="wifi" [(ngModel)]="wifi" type="checkbox" value="">
+        <label class="form-check-label" for="">
+          Wi-Fi
+        </label>
+        <ul *ngIf="wifi">
+          <li>
+            <input class="form-check-input" name="freeWifi" [(ngModel)]="freeWifi" type="checkbox" value="">
+            <label class="form-check-label" for="">
+              Gratuito
+            </label>
+          </li>
+        </ul>        
+      	</div>
+      	<div class="form-check">
+        	<input class="form-check-input" name="phone" [(ngModel)]="phone" type="checkbox" value="">
+        	<label class="form-check-label" for="">
+          	Teléfono en la habitación
+        	</label>
+        	<ul *ngIf="phone">
+          	<li>
+            	<input class="form-check-input" [(ngModel)]="freePhone" name="freePhone" type="checkbox" value="">
+            	<label class="form-check-label" for="">
+              Gratuito
+            	</label>
+          	</li>
+        	</ul>        
+      	</div>
+      	<div class="form-check">
+        	<input class="form-check-input" name="television" [(ngModel)]="television" type="checkbox" value="">
+        	<label class="form-check-label" for="">
+          Televisión en la habitación
+        	</label>
+        	<ul *ngIf="television">
+          	<li>
+            	<input class="form-check-input" name="freeTelevision" [(ngModel)]="freeTelevision" type="checkbox" value="">
+            	<label class="form-check-label" for="">
+              Gratuita
+            	</label>
+          	</li>
+          	<li>
+            	<input class="form-check-input" name="extraTelevision" [(ngModel)]="extraTelevision" type="checkbox" value="">
+            	<label class="form-check-label" for="">
+              Televisión por cable
+            	</label>
+          	</li>
+          	<li>
+            	<input class="form-check-input"name="flatTelevision" [(ngModel)]="flatTelevision"  type="checkbox" value="">
+            	<label class="form-check-label" for="">
+              Pantalla plana
+            	</label>
+          	</li>
+        	</ul>        
+      	</div>
+      	<div class="form-check">
+        	<input class="form-check-input" name="safebox" [(ngModel)]="safebox" type="checkbox" value="">
+        	<label class="form-check-label" for="">
+          Caja fuerte en la habitación
+        	</label>
+        	<ul *ngIf="safebox">
+	          <li>
+	            <input class="form-check-input" name="freeSafebox" [(ngModel)]="freeSafebox" type="checkbox" value="">
+	            <label class="form-check-label" for="">
+	              Gratuita
+	            </label>
+	          </li>
+	        </ul>        
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="minibar" [(ngModel)]="minibar" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Minibar en la habitación
+	        </label>
+	        <ul *ngIf="minibar">
+	          <li>
+	            <input class="form-check-input" name="freeMinibar" [(ngModel)]="freeMinibar" type="checkbox" value="">
+	            <label class="form-check-label" for="">
+	              Gratuito
+	            </label>
+	          </li>
+	        </ul>        
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="heating" [(ngModel)]="heating" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Calefacción
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="cooling" [(ngModel)]="cooling" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Aire acondicionado
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="bath" [(ngModel)]="bath" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Bañera
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="shower" [(ngModel)]="shower" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Ducha
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="laundry" [(ngModel)]="laundry" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Lavandería
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="garage" [(ngModel)]="garage" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Garaje
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="hairdresser" [(ngModel)]="hairdresser" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Peluquería
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="gym" [(ngModel)]="gym" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Gimnasio
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="warehouse" [(ngModel)]="warehouse" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Almacén de equipaje
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="lenceryWarehouse" [(ngModel)]="lenceryWarehouse" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Almacén de lencería
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="library" [(ngModel)]="library" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Biblioteca
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="spa" [(ngModel)]="spa" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Spa
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="swimmingPool" [(ngModel)]="swimmingPool" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Piscina
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="pcRoom" [(ngModel)]="pcRoom" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Sala de ordenadores
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="sportCenter" [(ngModel)]="sportCenter" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Centro deportivo
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="playroom" [(ngModel)]="playroom" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Ludoteca
+	        </label>
+	      </div>
+	      <div class="form-check">
+	        <input class="form-check-input" name="outterActivities" [(ngModel)]="outterActivities" type="checkbox" value="">
+	        <label class="form-check-label" for="">
+	          Organización de actividades externas
+	        </label>
+	      </div>
+
+	    </form>
+	  </div>
+
+	</div>
+</div>

@@ -1,0 +1,96 @@
+@media(min-width: 1200px) {
+	.carousel {
+		max-height: 350px;
+	}
+
+	.carousel-item {
+		max-height: 350px;
+	}
+}
+
+@media(max-width: 1199px) and (min-width: 992px) {
+	.carousel {
+		max-height: 350px;
+	}
+
+	.carousel-item {
+		max-height: 350px;
+	}
+}
+
+@media(max-width: 991px) and (min-width: 768px) {
+	.carousel {
+		max-height: 220px;
+	}
+
+	.carousel-item {
+		max-height: 220px;
+	}
+}
+
+@media(max-width: 767px) {
+	.carousel {
+		max-height: 220px;
+	}
+
+	.carousel-item {
+		max-height: 220px;
+	}
+}
+
+.green-container {
+	background-color: #9FF781;
+}
+
+.nofontsize {
+	letter-spacing: 0px;
+}
+
+.menu-button {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#galeria {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0px !important;;
+}
+
+img {
+	position:relative;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#galery ul li {
+	padding: 20px 10px 0px 10px;
+	cursor: pointer;
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+}
+
+#galery ul {
+	padding: 0px;
+}
+#galery ul li:hover {
+	transition: .6s;
+	opacity: .6;
+}
+#features {
+	padding-left: 40px;
+}
+.padding-20 {
+	padding-left: 20px;
+}
+ul.features li {
+	list-style:none;
+}
+ul.features li:before {
+  content: '✓ ';
+}
+.carouimg {
+	max-height: 600px;
+}

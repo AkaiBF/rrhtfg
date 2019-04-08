@@ -1,0 +1,179 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            B&uacute;squeda
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item-divider color="dark">Nombre de b&uacute;squeda</ion-item-divider>
+        <ion-item-group>
+            <ion-input type="text" [(ngModel)]="name" name="name" value="B&uacute;squeda1"></ion-input>
+        </ion-item-group>
+        <ion-item-divider color="dark">Fechas</ion-item-divider>
+        <ion-item-group>
+            <ion-item>
+                <ion-label>Entrada</ion-label>
+                <ion-input class="fechas" [(ngModel)]="startDate" name="startDate" type="date"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Salida</ion-label>
+                <ion-input class="fechas" type="date" [(ngModel)]="endDate" name="endDate"></ion-input>
+            </ion-item>
+        </ion-item-group>
+        <ion-item-divider color="dark">Localizaci&oacute;n</ion-item-divider>
+        <ion-item-group>
+            <ion-item>
+                <ion-label>Pa&iacute;s</ion-label>
+                <select [(ngModel)]="country" name="country">
+                    <option *ngFor="let i of countries">{{ i }}</option>
+                </select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Comunidad</ion-label>
+                <select [(ngModel)]="community" name="community">
+                    <option *ngFor="let j of coms(country)">{{ j }}</option>
+                </select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ciudad</ion-label>
+                <select [(ngModel)]="city" name="city">
+                    <option *ngFor="let k of citadel(community)">{{ k }}</option>
+                </select>
+            </ion-item>
+        </ion-item-group>
+
+        <ion-item-divider color="dark">Preferencias</ion-item-divider>
+        <ion-item-group>
+            <ion-item>
+                <ion-label> Wifi</ion-label>
+                <ion-toggle [(ngModel)]="wifi" color="dark"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="wifi" color="light">
+                <ion-label> Gratuito</ion-label>
+                <ion-toggle [(ngModel)]="freeWifi" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Tel&eacute;fono</ion-label>
+                <ion-toggle [(ngModel)]="phone" color="dark"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="phone" color="light">
+                <ion-label> Gratuito</ion-label>
+                <ion-toggle [(ngModel)]="freePhone" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Televisor</ion-label>
+                <ion-toggle [(ngModel)]="television" color="dark"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="television" color="light">
+                <ion-label> Gratuito</ion-label>
+                <ion-toggle [(ngModel)]="freeTelevision" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item *ngIf="television" color="light">
+                <ion-label> Canales extra</ion-label>
+                <ion-toggle [(ngModel)]="extraTelevision" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item *ngIf="television" color="light">
+                <ion-label> Pantalla plana</ion-label>
+                <ion-toggle [(ngModel)]="flatTelevision" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Caja fuerte</ion-label>
+                <ion-toggle [(ngModel)]="safebox" color="dark"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="safebox" color="light">
+                <ion-label> Gratuito</ion-label>
+                <ion-toggle [(ngModel)]="freeSafebox" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Minibar</ion-label>
+                <ion-toggle [(ngModel)]="minibar" color="dark"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="minibar" color="light">
+                <ion-label> Gratuito</ion-label>
+                <ion-toggle [(ngModel)]="freeMinibar" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Ba&ntilde;era</ion-label>
+                <ion-toggle [(ngModel)]="bath" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Ducha</ion-label>
+                <ion-toggle [(ngModel)]="shower" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Aire acondicionado</ion-label>
+                <ion-toggle [(ngModel)]="cooling" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Calefacci&oacute;n</ion-label>
+                <ion-toggle [(ngModel)]="heating" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Lavander&iacute;a</ion-label>
+                <ion-toggle [(ngModel)]="laundry" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Garaje</ion-label>
+                <ion-toggle [(ngModel)]="garage" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Peluquer&iacute;a</ion-label>
+                <ion-toggle [(ngModel)]="hairdresser" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Gimnasio</ion-label>
+                <ion-toggle [(ngModel)]="gym" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Almac&eacute;n de equipaje</ion-label>
+                <ion-toggle [(ngModel)]="warehouse" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Almac&eacute;n de lencer&iacute;a</ion-label>
+                <ion-toggle [(ngModel)]="lenceryWarehouse" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Biblioteca</ion-label>
+                <ion-toggle [(ngModel)]="library" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Spa</ion-label>
+                <ion-toggle [(ngModel)]="spa" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Piscina</ion-label>
+                <ion-toggle [(ngModel)]="swimmingPool" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Sala de ordenadores</ion-label>
+                <ion-toggle [(ngModel)]="pcRoom" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Zona deportiva</ion-label>
+                <ion-toggle [(ngModel)]="sportCenter" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Ludoteca</ion-label>
+                <ion-toggle [(ngModel)]="playroom" color="dark"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label> Actividades externas</ion-label>
+                <ion-toggle [(ngModel)]="outterActivities" color="dark"></ion-toggle>
+            </ion-item>
+        </ion-item-group>
+        
+            <ion-button expand="block" color="dark" (click)="addSearch()">Buscar</ion-button>
+        
+    </ion-list>
+</ion-content>

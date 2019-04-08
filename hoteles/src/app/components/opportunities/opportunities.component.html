@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container" id="outerContainer">
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+      <div class="card">
+        <img [src]="baseroute + 'people/getimage/' + profile.photo">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ profile.name }} {{ profile.surname }}
+          </h5>
+          <ul>
+            <li><b>Edad: {{ getAge(profile.birthday) }}</b> </li>
+            <li><b>Email: {{ profile.email }}</b> </li>
+            <li><b>Teléfono: {{ profile.phone }}</b> </li>
+            <li><b>Nacionalidad: {{ profile.nationality }}</b> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+</div>

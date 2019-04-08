@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\classes",
+    "\\src\\app\\home",
+    "\\src\\app\\list",
+    "\\src\\app\\profile",
+    "\\src\\app\\services"
+  ],
+  "SelectedNode": "\\src\\app\\services\\bets.service.ts",
+  "PreviewInSolutionExplorer": false
+}

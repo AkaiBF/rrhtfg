@@ -1,0 +1,42 @@
+.grid-calendar {
+	margin-top: 20px;
+	display:grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-gap:8px;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+}
+
+nav.calendar-month {
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+li.calendar{
+	padding-top: 5px;
+	padding-left: 10px;
+	display: flex;
+	text-align: center;
+	min-height: 100px;
+}
+
+div.notmonth li {
+	opacity: 0.5;
+}
+
+li.notfull {
+	background-color: rgba(154, 212, 168, 1);
+}
+
+li:hover {
+	opacity: 0.6;
+	cursor:pointer;
+}
+
+li.full.notmonth {
+	background-color: rgba(235, 142, 151, 0.5);
+}
+
+li.full {
+	background-color: rgba(235, 142, 151, 1);
+}

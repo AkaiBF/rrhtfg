@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<div class="container" id="outerContainer">
+	<div class="card-columns">
+		<div class="card border-secondary" style="width: 18rem;" *ngFor="let lead of leads; let i=index">
+			<img class="card-img-top" [src]="lead.img" alt="Card image cap">
+			<div class="card-header">
+				<h5 class="card-title">{{ lead.name }}</h5>
+			</div>
+			<div class="card-body" id="topStars">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						{{ lead.date }}
+					</li>
+				</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<div class="container no-font-size">
+							<div class="d-inline" *ngFor="let i of counter(lead.stars)">
+								<i class="fa fa-star active-fa" aria-hidden="true"></i>
+							</div>
+							<div class="d-inline" *ngFor="let i of counter(5 - lead.stars)">
+								<i class="fa fa-star inactive-fa" aria-hidden="true"></i>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="list-group list-group-flush" *ngIf="lead.features">
+					<li class="list-group-item">
+						<button class="btn btn-secondary pujas form-control" data-toggle="modal" data-target="#details" (click)="detalles(lead)">Detalles</button>
+					</li>
+				</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<a [href]=lead.link class="card-link">Perfil</a>
+					</li>
+				</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-10">
+								<input type="number" class="form-control" [(ngModel)]="leads[i].price">
+							</div>
+							<div class="col-md-2">€</div>
+							<button class="btn btn-success pujas form-control" (click)="createBet(lead.id, lead.price)">Pujar</button>
+							<button class="btn btn-danger pujas form-control" (click)="addDenegate(lead.id)">Rechazar</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="details">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="checkmark">
+        	<li *ngFor="let item of detailList">
+        		{{ item }}
+        	</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

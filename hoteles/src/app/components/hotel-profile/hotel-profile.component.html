@@ -1,0 +1,175 @@
+<app-navbar></app-navbar>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100 carouimg" [src]="hotel.imgs.slide[0]" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 carouimg" [src]="hotel.imgs.slide[1]" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 carouimg" [src]="hotel.imgs.slide[2]" alt="First slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<nav class="navbar navbar-light bg-light">
+  <div class="form-inline" *ngIf="!galery_on">
+  	<button class="btn btn-outline-secondary menu-button">Características</button>
+  	<button class="btn btn-outline-secondary menu-button" (click)="swap_galery()">Fotografías</button>
+  </div>
+  <div class="form-inline" *ngIf="galery_on">
+    <button class="btn btn-outline-secondary menu-button" (click)="swap_galery()">Características</button>
+    <button class="btn btn-outline-secondary menu-button">Fotografías</button>
+  </div>
+</nav>
+<div class="container">
+  <div class="row" *ngIf="!galery_on">
+    <div class="col-md-12" id="features">
+      <h1>{{ hotel.name }}</h1>
+      <div class="form-group col-md-12">
+        <div class="d-inline" *ngFor="let i of counter(hotel.features.stars); let j = index">
+          <div class="d-inline">
+            <i class="fa fa-star active-fa" aria-hidden="true" ></i>
+          </div>
+        </div>
+        <div class="d-inline" *ngFor="let i of counter(5 - hotel.features.stars); let j = index">
+          <div class="d-inline">
+            <i class="fa fa-star inactive-fa" aria-hidden="true" ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12"><hr></div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <h3>Servicios de habitación</h3>
+      <ul class="features">
+        <div class="d-inline" *ngIf="hotel.features.phone.enabled">
+          <li>Teléfono 
+            <div class="d-inline" *ngIf="!hotel.features.phone.free">de pago.</div>
+            <div class="d-inline" *ngIf="hotel.features.phone.free">gratuito.</div>
+          </li>
+        </div>
+        
+        <li *ngIf="hotel.features.heating">Calefacción.</li>
+        <li *ngIf="hotel.features.cooling">Aire acondicionado.</li>
+        <li *ngIf="hotel.features.bath">Aseo con bañera.</li>
+        <li *ngIf="hotel.features.shower">Aseo con ducha.</li>
+        <li *ngIf="hotel.features.safebox.enabled">Caja de seguridad 
+          <div class="d-inline" *ngIf="hotel.features.safebox.free">gratuita.</div>
+          <div class="d-inline" *ngIf="!hotel.features.safebox.free">de pago.</div>
+        </li>
+        <li *ngIf="hotel.features.minibar.enabled">Minibar 
+          <div class="d-inline" *ngIf="hotel.features.minibar.free">gratuito.</div>
+          <div class="d-inline" *ngIf="!hotel.features.minibar.free">de pago.</div>
+        </li>
+        <li *ngIf="hotel.features.television.enabled">Televisión 
+          <div class="d-inline" *ngIf="hotel.features.television.flat">con pantalla plana </div>
+          <div class="d-inline" *ngIf="hotel.features.television.free">gratuita</div>
+          <div class="d-inline" *ngIf="!hotel.features.television.free">de pago</div>
+          <div class="d-inline" *ngIf="hotel.features.television.extra"> con canales extra.</div>
+          <div class="d-inline" *ngIf="!hotel.features.television.extra">.</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <h3>Otros servicios</h3>
+      <ul class="features">
+        <li *ngIf="hotel.features.laundry">Lavandería.</li>
+        <li *ngIf="hotel.features.garage">Garaje.</li>
+        <li *ngIf="hotel.features.hairdresser">Peluquería.</li>
+        <li *ngIf="hotel.features.gym">Gimnasio.</li>
+        <li *ngIf="hotel.features.warehouse">Almacén de equipaje.</li>
+        <li *ngIf="hotel.features.lenceryWarehouse">Almacén de lencería.</li>
+        <li *ngIf="hotel.features.library">Biblioteca.</li>
+        <li *ngIf="hotel.features.spa">Spa.</li>
+        <li *ngIf="hotel.features.swimmingPool">Piscina.</li>
+        <li *ngIf="hotel.features.pcRoom">Sala de ordenadores.</li>
+        <li *ngIf="hotel.features.sportCenter">Zona deportiva.</li>
+        <li *ngIf="hotel.features.playroom">Ludoteca.</li>
+        <li *ngIf="hotel.features.outterActivities">Organización de actividades externas.</li>
+      </ul>
+    </div>
+    
+  </div>
+
+  <div id="galery" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="galery_on">
+    <div class="container">
+      <div class="row">
+        <ul>
+
+          <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3" *ngFor="let photo of hotel.imgs.photos">
+            <img [src]="photo">
+          </li>
+      
+
+        </ul>
+
+      </div>
+    </div>
+    
+    
+  </div>
+  <div id="addimages" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-2">
+          <label> Primera imagen de la presentación</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-2">
+          <input type="file" (change)="loadFile($event)">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-2">
+          <button class="btn btn-outline btn-dark" (click)="saveImg(0)">Guardar</button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-2">
+          <label> Segunda imagen de la presentación</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-2">
+          <input type="file" (change)="loadFile($event)">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-2">
+          <button class="btn btn-outline btn-dark" (click)="saveImg(1)">Guardar</button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-2">
+          <label> Tercera imagen de la presentación</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-2">
+          <input type="file" (change)="loadFile($event)">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-2">
+          <button class="btn btn-outline btn-dark" (click)="saveImg(2)">Guardar</button>
+        </div>
+
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-2">
+          <label> Imagen de la galería</label>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 p-2">
+          <input type="file" (change)="loadFile($event)">
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 p-2">
+          <button class="btn btn-outline btn-dark" (click)="saveImg(3)">Guardar</button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-2">
+          <button class="btn btn-outline btn-dark">Añadir</button>
+        </div>
+        
+      </div>
+    </div>
+    
+    
+  </div>
+</div>

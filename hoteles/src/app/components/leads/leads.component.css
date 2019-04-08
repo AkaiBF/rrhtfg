@@ -1,0 +1,16 @@
+#outerContainer {
+	margin-top:50px;
+}
+#topStars {
+	padding-top: 0px;
+}
+button.pujas {
+	margin: 5px;
+}
+ul.checkmark {
+  list-style: none;
+}
+
+ul.checkmark li:before {
+  content: '✓';
+}

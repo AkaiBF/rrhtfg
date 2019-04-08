@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Fechas</th>
+      <th scope="col">Puja</th>
+      <th scope="col">Telephone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ client.name }}</td>
+      <td>{{ client.startDate }} - {{ client.endDate }}</td>
+      <td>{{ client.price }}€</td>
+      <td>{{ client.tfno }}</td>
+    </tr>
+  </tbody>
+</table>
+
